@@ -40,5 +40,53 @@
     "name": "Bánh quy đồng tiền",
     "price": 5000,
     "image": "/SP8.jpg"
+  },
+  {
+    "id": "item-9",
+    "name": "Mỳ ly Modern",
+    "price": 15000,
+    "image": "/SP9.jpg"
+  },
+  {
+    "id": "item-10",
+    "name": "Mỳ ly hảo hảo",
+    "price": 15000,
+    "image": "/SP10.jpg"
+  },
+  {
+    "id": "item-11",
+    "name": "Mỳ ly Omni tôm chanh",
+    "price": 15000,
+    "image": "/SP11.jpg"
+  },
+  {
+    "id": "item-12",
+    "name": "Mỳ tô Omni tôm chanh",
+    "price": 18000,
+    "image": "/SP12.jpg"
+  },
+  {
+    "id": "item-13",
+    "name": "Mỳ ly cung đình tôm chua cay",
+    "price": 15000,
+    "image": "/SP13.jpg"
+  },
+  {
+    "id": "item-14",
+    "name": "Mỳ ly cung đình bò hầm",
+    "price": 15000,
+    "image": "/SP14.jpg"
+  },
+  {
+    "id": "item-15",
+    "name": "Xúc xích Vissan bò",
+    "price": 8000,
+    "image": "/SP15.jpg"
+  },
+  {
+    "id": "item-16",
+    "name": "Xúc xích Vissan heo",
+    "price": 8000,
+    "image": "/SP16.jpg"
   }
 ]

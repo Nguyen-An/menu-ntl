@@ -24,8 +24,8 @@ export default function OrderPage() {
   const total = cart.reduce((sum, i) => sum + i.price * i.quantity, 0);
   const totalItems = cart.reduce((sum, i) => sum + i.quantity, 0);
 
-  function handleConfirm() {
-    const orders = getOrders();
+  async function handleConfirm() {
+    const orders = await getOrders();
 
     if (currentOrderId) {
       // Update existing order
@@ -34,7 +34,7 @@ export default function OrderPage() {
           ? { ...o, items: cart, createdAt: new Date().toISOString() }
           : o
       );
-      saveOrders(updated);
+      await saveOrders(updated);
     } else {
       // Create new order
       const newOrder = {
@@ -43,7 +43,7 @@ export default function OrderPage() {
         createdAt: new Date().toISOString(),
         items: cart,
       };
-      saveOrders([...orders, newOrder]);
+      await saveOrders([...orders, newOrder]);
       setCurrentOrderId(newOrder.id);
     }
 

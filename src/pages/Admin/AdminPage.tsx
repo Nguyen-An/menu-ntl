@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import type { Order } from '@/types';
 import { getOrders, saveOrders } from '@/utils/storage';
 import { isSameDay, toDateInputValue, formatPrice, formatTime } from '@/utils/dateUtils';
@@ -14,7 +14,11 @@ export default function AdminPage() {
   const [selectedOrder, setSelectedOrder] = useState<Order | null>(null);
   const [modalOpen, setModalOpen] = useState(false);
   const [deleteTarget, setDeleteTarget] = useState<Order | null>(null);
-  const [orders, setOrders] = useState<Order[]>(getOrders);
+  const [orders, setOrders] = useState<Order[]>([]);
+
+  useEffect(() => {
+    getOrders().then(setOrders);
+  }, []);
 
   const filteredOrders = orders.filter((o) => isSameDay(o.createdAt, selectedDate));
 
@@ -28,10 +32,10 @@ export default function AdminPage() {
     setModalOpen(true);
   }
 
-  function confirmDelete() {
+  async function confirmDelete() {
     if (!deleteTarget) return;
     const updated = orders.filter((o) => o.id !== deleteTarget.id);
-    saveOrders(updated);
+    await saveOrders(updated);
     setOrders(updated);
     setDeleteTarget(null);
   }
