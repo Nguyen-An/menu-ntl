@@ -3,42 +3,42 @@
     "id": "item-2",
     "name": "Bánh ăn sáng Bảo Ngọc",
     "price": 10000,
-    "image": "/src/assets/SP2.jpg"
+    "image": "/SP2.jpg"
   },
   {
     "id": "item-3",
     "name": "Blendy trà đào cam sả",
     "price": 5000,
-    "image": "/src/assets/SP3.jpg"
+    "image": "/SP3.jpg"
   },
   {
     "id": "item-4",
     "name": "Bim bim que Thái Lan",
     "price": 8000,
-    "image": "/src/assets/SP4.jpg"
+    "image": "/SP4.jpg"
   },
   {
     "id": "item-5",
     "name": "Mì tôm trẻ em",
     "price": 2000,
-    "image": "/src/assets/SP5.jpg"
+    "image": "/SP5.jpg"
   },
   {
     "id": "item-6",
     "name": "Bim bim đậu xanh",
     "price": 10000,
-    "image": "/src/assets/SP6.jpg"
+    "image": "/SP6.jpg"
   },
   {
     "id": "item-7",
     "name": "Đậu phộng pinattsu",
     "price": 6000,
-    "image": "/src/assets/SP7.jpg"
+    "image": "/SP7.jpg"
   },
   {
     "id": "item-8",
     "name": "Bánh quy đồng tiền",
     "price": 5000,
-    "image": "/src/assets/SP8.jpg"
+    "image": "/SP8.jpg"
   }
 ]
