@@ -27,7 +27,7 @@ export default function MenuPage() {
           </button>
           <div className="text-center">
             <h1 className="font-bold text-gray-900 text-base">Menu</h1>
-            <p className="text-xs text-gray-500">Hi, {userName}!</p>
+            <p className="text-xs text-gray-500">Hi, {userName.startsWith('anon_') ? 'người đẹp' : userName}!</p>
           </div>
           <div className="w-6" />
         </div>

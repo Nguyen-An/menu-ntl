@@ -26,7 +26,7 @@ export function OrderSummary({ onConfirm }: Props) {
             {totalItems}
           </span>
         </div>
-        <span>Confirm Order</span>
+        <span>Xác nhận đơn hàng</span>
         <span className="font-bold">{formatPrice(totalPrice)}</span>
       </button>
     </div>

@@ -48,7 +48,7 @@ export function MenuItemCard({ item }: Props) {
               onClick={handleAdd}
               className="w-full bg-blue-600 hover:bg-blue-700 text-white text-sm font-medium rounded-lg py-2 transition-colors"
             >
-              Add
+              Thêm nè
             </button>
           ) : (
             <div className="flex items-center justify-between">

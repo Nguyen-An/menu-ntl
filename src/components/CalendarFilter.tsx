@@ -11,7 +11,7 @@ export function CalendarFilter({ value, onChange }: Props) {
     <div className="flex items-center gap-2">
       <label className="flex items-center gap-2 text-sm font-medium text-gray-700">
         <CalendarDays size={16} className="text-gray-500" />
-        Date
+        Ngày
       </label>
       <input
         type="date"

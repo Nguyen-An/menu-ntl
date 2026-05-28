@@ -47,9 +47,9 @@ export default function AdminPage() {
         <div className="max-w-6xl mx-auto px-6 py-4 flex items-center justify-between">
           <div className="flex items-center gap-3">
             <UtensilsCrossed size={24} className="text-blue-600" />
-            <h1 className="text-xl font-bold text-gray-900">Restaurant Admin</h1>
+            <h1 className="text-xl font-bold text-gray-900">Quản lý</h1>
           </div>
-          <span className="text-sm text-gray-500">Orders Dashboard</span>
+          <span className="text-sm text-gray-500">Bảng điều khiển đơn hàng</span>
         </div>
       </header>
 
@@ -59,10 +59,10 @@ export default function AdminPage() {
           <div className="flex items-center gap-2">
             <ClipboardList size={18} className="text-gray-600" />
             <span className="font-semibold text-gray-800">
-              {filteredOrders.length} order{filteredOrders.length !== 1 ? 's' : ''}
+              {filteredOrders.length} Đơn hàng
             </span>
             {filteredOrders.length > 0 && (
-              <span className="text-gray-400 text-sm">— Total: {formatPrice(dailyTotal)}</span>
+              <span className="text-gray-400 text-sm">— Tổng: {formatPrice(dailyTotal)}</span>
             )}
           </div>
           <CalendarFilter value={selectedDate} onChange={setSelectedDate} />
@@ -80,10 +80,10 @@ export default function AdminPage() {
               <TableHeader>
                 <TableRow>
                   <TableHead>#</TableHead>
-                  <TableHead>Customer</TableHead>
-                  <TableHead>Items</TableHead>
-                  <TableHead>Total</TableHead>
-                  <TableHead>Time</TableHead>
+                  <TableHead>Khách hàng</TableHead>
+                  <TableHead>Mặt hàng</TableHead>
+                  <TableHead>Tổng</TableHead>
+                  <TableHead>Thời gian</TableHead>
                   <TableHead></TableHead>
                 </TableRow>
               </TableHeader>
@@ -106,7 +106,7 @@ export default function AdminPage() {
                       </TableCell>
                       <TableCell>
                         <span className="inline-flex items-center rounded-full bg-blue-100 text-blue-700 px-2.5 py-0.5 text-xs font-medium">
-                          {itemCount} item{itemCount !== 1 ? 's' : ''}
+                          {itemCount} mặt hàng
                         </span>
                       </TableCell>
                       <TableCell>

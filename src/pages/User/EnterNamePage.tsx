@@ -17,6 +17,11 @@ export default function EnterNamePage() {
     navigate('/menu');
   }
 
+  function handleAnonymous() {
+    setUserName(`anon_${crypto.randomUUID()}`);
+    navigate('/menu');
+  }
+
   return (
     <div className="min-h-screen bg-gradient-to-br from-blue-50 to-indigo-100 flex items-center justify-center p-4">
       <div className="bg-white rounded-2xl shadow-xl p-8 w-full max-w-sm flex flex-col items-center gap-6">
@@ -24,12 +29,12 @@ export default function EnterNamePage() {
           <UtensilsCrossed size={36} className="text-blue-600" />
         </div>
         <div className="text-center">
-          <h1 className="text-2xl font-bold text-gray-900">Welcome!</h1>
-          <p className="text-gray-500 text-sm mt-1">Enter your name to start ordering</p>
+          <h1 className="text-2xl font-bold text-gray-900">Xin chào người đẹp!</h1>
+          <p className="text-gray-500 text-sm mt-1">Nhập tên của bạn để bắt đầu đặt hàng</p>
         </div>
         <div className="w-full flex flex-col gap-3">
           <Input
-            placeholder="Your name"
+            placeholder="Tên của bạn"
             value={name}
             onChange={(e) => setName(e.target.value)}
             onKeyDown={(e) => e.key === 'Enter' && handleStart()}
@@ -42,7 +47,15 @@ export default function EnterNamePage() {
             size="lg"
             className="w-full"
           >
-            Start Ordering
+            Bắt đầu đặt hàng
+          </Button>
+          <Button
+            onClick={handleAnonymous}
+            variant="outline"
+            size="lg"
+            className="w-full"
+          >
+            Ẩn danh
           </Button>
         </div>
       </div>
