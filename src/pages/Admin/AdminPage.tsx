@@ -7,7 +7,7 @@ import { OrderDetailModal } from '@/components/OrderDetailModal';
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from '@/components/ui/table';
 import { Dialog, DialogContent, DialogHeader, DialogTitle } from '@/components/ui/dialog';
 import { Button } from '@/components/ui/button';
-import { ClipboardList, Trash2 } from 'lucide-react';
+import { ClipboardList, Trash2, CheckCircle2 } from 'lucide-react';
 
 export default function AdminPage() {
   const [selectedDate, setSelectedDate] = useState(toDateInputValue(new Date()));
@@ -27,6 +27,10 @@ export default function AdminPage() {
     0
   );
 
+  const dailyActual = filteredOrders
+    .filter((o) => o.status === 'approved')
+    .reduce((sum, o) => sum + o.items.reduce((s, i) => s + i.price * i.quantity, 0), 0);
+
   function openDetail(order: Order) {
     setSelectedOrder(order);
     setModalOpen(true);
@@ -40,6 +44,14 @@ export default function AdminPage() {
     setDeleteTarget(null);
   }
 
+  async function approveOrder(order: Order) {
+    const updated = orders.map((o) =>
+      o.id === order.id ? { ...o, status: 'approved' as const } : o
+    );
+    await saveOrders(updated);
+    setOrders(updated);
+  }
+
   return (
     <div className="min-h-screen bg-gray-50">
       <main className="max-w-6xl mx-auto px-6 py-6 flex flex-col gap-6">
@@ -51,7 +63,10 @@ export default function AdminPage() {
               {filteredOrders.length} Đơn hàng
             </span>
             {filteredOrders.length > 0 && (
-              <span className="text-gray-400 text-sm">— Tổng: {formatPrice(dailyTotal)}</span>
+              <>
+                <span className="text-gray-400 text-sm">— Dự tính: {formatPrice(dailyTotal)}</span>
+                <span className="text-gray-400 text-sm">| Thực tế: <span className="text-green-600 font-medium">{formatPrice(dailyActual)}</span></span>
+              </>
             )}
           </div>
           <CalendarFilter value={selectedDate} onChange={setSelectedDate} />
@@ -73,6 +88,7 @@ export default function AdminPage() {
                   <TableHead>Mặt hàng</TableHead>
                   <TableHead>Tổng</TableHead>
                   <TableHead>Thời gian</TableHead>
+                  <TableHead>Trạng thái</TableHead>
                   <TableHead></TableHead>
                 </TableRow>
               </TableHeader>
@@ -83,6 +99,7 @@ export default function AdminPage() {
                     0
                   );
                   const itemCount = order.items.reduce((sum, i) => sum + i.quantity, 0);
+                  const isApproved = order.status === 'approved';
                   return (
                     <TableRow
                       key={order.id}
@@ -105,13 +122,33 @@ export default function AdminPage() {
                         {formatTime(order.createdAt)}
                       </TableCell>
                       <TableCell onClick={(e) => e.stopPropagation()}>
-                        <button
-                          onClick={() => setDeleteTarget(order)}
-                          className="p-1.5 rounded-md text-gray-400 hover:text-red-600 hover:bg-red-50 transition-colors"
-                          title="Xóa order"
-                        >
-                          <Trash2 size={15} />
-                        </button>
+                        {isApproved ? (
+                          <span className="inline-flex items-center gap-1 text-xs font-medium text-green-600">
+                            <CheckCircle2 size={13} />
+                            Đã phê duyệt
+                          </span>
+                        ) : (
+                          <span className="text-xs font-medium text-gray-400">Tạo mới</span>
+                        )}
+                      </TableCell>
+                      <TableCell onClick={(e) => e.stopPropagation()}>
+                        <div className="flex items-center gap-1">
+                          <button
+                            disabled={isApproved}
+                            onClick={() => approveOrder(order)}
+                            className="p-1.5 rounded-md text-gray-400 hover:text-green-600 hover:bg-green-50 transition-colors disabled:opacity-30 disabled:cursor-not-allowed disabled:hover:text-gray-400 disabled:hover:bg-transparent"
+                            title="Xác nhận đơn"
+                          >
+                            <CheckCircle2 size={15} />
+                          </button>
+                          <button
+                            onClick={() => setDeleteTarget(order)}
+                            className="p-1.5 rounded-md text-gray-400 hover:text-red-600 hover:bg-red-50 transition-colors"
+                            title="Xóa order"
+                          >
+                            <Trash2 size={15} />
+                          </button>
+                        </div>
                       </TableCell>
                     </TableRow>
                   );

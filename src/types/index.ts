@@ -17,4 +17,5 @@ export type Order = {
   userName: string;
   createdAt: string;
   items: OrderItem[];
+  status?: 'created' | 'approved';
 };
