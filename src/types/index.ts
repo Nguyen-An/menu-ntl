@@ -18,4 +18,5 @@ export type Order = {
   createdAt: string;
   items: OrderItem[];
   status?: 'created' | 'approved';
+  payment_method?: 'cash' | 'qr' | 'unknown';
 };

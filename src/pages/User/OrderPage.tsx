@@ -29,12 +29,12 @@ export default function OrderPage() {
   const total = cart.reduce((sum, i) => sum + i.price * i.quantity, 0);
   const totalItems = cart.reduce((sum, i) => sum + i.quantity, 0);
 
-  async function saveOrder() {
+  async function saveOrder(paymentMethod: 'cash' | 'qr') {
     const orders = await getOrders();
     if (currentOrderId) {
       const updated = orders.map((o) =>
         o.id === currentOrderId
-          ? { ...o, items: cart, createdAt: new Date().toISOString() }
+          ? { ...o, items: cart, createdAt: new Date().toISOString(), payment_method: paymentMethod }
           : o
       );
       await saveOrders(updated);
@@ -44,6 +44,8 @@ export default function OrderPage() {
         userName,
         createdAt: new Date().toISOString(),
         items: cart,
+        status: 'created' as const,
+        payment_method: paymentMethod,
       };
       await saveOrders([...orders, newOrder]);
       setCurrentOrderId(newOrder.id);
@@ -53,7 +55,7 @@ export default function OrderPage() {
   async function handleCash() {
     setConfirmedItems([...cart]);
     setConfirmedTotal(total);
-    await saveOrder();
+    await saveOrder('cash');
     setPaymentModal(false);
     setConfirmed(true);
     clearCart();
@@ -67,7 +69,7 @@ export default function OrderPage() {
   async function handleQRConfirm() {
     setConfirmedItems([...cart]);
     setConfirmedTotal(total);
-    await saveOrder();
+    await saveOrder('qr');
     setShowQR(false);
     setConfirmed(true);
     clearCart();

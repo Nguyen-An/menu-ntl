@@ -23,7 +23,15 @@ export function OrderDetailModal({ order, open, onClose }: Props) {
     <Dialog open={open} onOpenChange={(v) => !v && onClose()}>
       <DialogContent className="max-w-lg">
         <DialogHeader>
-          <DialogTitle>Order – {order.userName}</DialogTitle>
+          <DialogTitle>
+            Đơn hàng –{' '}
+            <span
+              title={order.userName.length > 20 ? order.userName : undefined}
+              className={order.userName.length > 20 ? 'cursor-help' : undefined}
+            >
+              {order.userName.length > 20 ? `${order.userName.slice(0, 20)}…` : order.userName}
+            </span>
+          </DialogTitle>
           <p className="text-sm text-gray-500 pt-1">
             {new Date(order.createdAt).toLocaleString('vi-VN')} &nbsp;·&nbsp; {formatTime(order.createdAt)}
           </p>
@@ -32,9 +40,9 @@ export function OrderDetailModal({ order, open, onClose }: Props) {
         <Table>
           <TableHeader>
             <TableRow>
-              <TableHead>Item</TableHead>
-              <TableHead className="text-right">Qty</TableHead>
-              <TableHead className="text-right">Subtotal</TableHead>
+              <TableHead>Mặt hàng</TableHead>
+              <TableHead className="text-right">Số lượng</TableHead>
+              <TableHead className="text-right">Tạm tính</TableHead>
             </TableRow>
           </TableHeader>
           <TableBody>

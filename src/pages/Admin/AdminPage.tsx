@@ -7,7 +7,7 @@ import { OrderDetailModal } from '@/components/OrderDetailModal';
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from '@/components/ui/table';
 import { Dialog, DialogContent, DialogHeader, DialogTitle } from '@/components/ui/dialog';
 import { Button } from '@/components/ui/button';
-import { ClipboardList, Trash2, CheckCircle2 } from 'lucide-react';
+import { ClipboardList, Trash2, CheckCircle2, Banknote, QrCode } from 'lucide-react';
 
 export default function AdminPage() {
   const [selectedDate, setSelectedDate] = useState(toDateInputValue(new Date()));
@@ -88,6 +88,7 @@ export default function AdminPage() {
                   <TableHead>Mặt hàng</TableHead>
                   <TableHead>Tổng</TableHead>
                   <TableHead>Thời gian</TableHead>
+                  <TableHead>Thanh toán</TableHead>
                   <TableHead>Trạng thái</TableHead>
                   <TableHead></TableHead>
                 </TableRow>
@@ -120,6 +121,21 @@ export default function AdminPage() {
                       </TableCell>
                       <TableCell className="text-gray-500 text-sm">
                         {formatTime(order.createdAt)}
+                      </TableCell>
+                      <TableCell onClick={(e) => e.stopPropagation()}>
+                        {order.payment_method === 'cash' ? (
+                          <span className="inline-flex items-center gap-1 text-xs font-medium text-emerald-700 bg-emerald-50 rounded-full px-2 py-0.5">
+                            <Banknote size={12} />
+                            Tiền mặt
+                          </span>
+                        ) : order.payment_method === 'qr' ? (
+                          <span className="inline-flex items-center gap-1 text-xs font-medium text-violet-700 bg-violet-50 rounded-full px-2 py-0.5">
+                            <QrCode size={12} />
+                            QR
+                          </span>
+                        ) : (
+                          <span className="text-xs text-gray-400">Không rõ</span>
+                        )}
                       </TableCell>
                       <TableCell onClick={(e) => e.stopPropagation()}>
                         {isApproved ? (
