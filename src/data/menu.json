@@ -88,5 +88,29 @@
     "name": "Xúc xích Vissan heo",
     "price": 8000,
     "image": "/SP16.jpg"
+  },
+  {
+    "id": "item-17",
+    "name": "Bánh oreo",
+    "price": 10000,
+    "image": "/SP17.jpg"
+  },
+  {
+    "id": "item-18",
+    "name": "Milo gói",
+    "price": 5000,
+    "image": "/SP18.jpg"
+  },
+  {
+    "id": "item-19",
+    "name": "Đậu phộng pinattsu",
+    "price": 5000,
+    "image": "/SP19.jpg"
+  },
+  {
+    "id": "item-20",
+    "name": "Hạt ngũ cốc",
+    "price": 10000,
+    "image": "/SP20.jpg"
   }
 ]
